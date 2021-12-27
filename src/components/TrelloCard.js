@@ -1,9 +1,25 @@
 import React from 'react';
 import { Paper, makeStyles } from '@material-ui/core';
+import {Draggable} from "react-beautiful-dnd";
 
-const TrelloCard = () => {
+const TrelloCard = ({card, index}) => {
   const classes = useStyle();
-  return <Paper className={classes.trellocard}>Card</Paper>;
+  return (
+      <Draggable draggableId={card.id} index={index}>
+        {
+          (provided) => (
+              <div
+                  ref={provided.innerRef}
+                  {...provided.draggableProps}
+                  {...provided.dragHandleProps}>
+                <Paper className={classes.trellocard}>
+                  {card.title}
+                </Paper>
+              </div>
+          )
+        }
+      </Draggable>
+  );
 };
 
 const useStyle = makeStyles(theme => ({
