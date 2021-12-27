@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import {Collapse, fade, Paper, Typography, makeStyles} from '@material-ui/core';
 import AddCardorListText from './AddCardorListText';
 

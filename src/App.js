@@ -67,60 +67,62 @@ export default function App() {
 
     const onDragEnd = (result) =>{
 
-         const {
-             destination,
-             destination: {
-                 droppableId: destdroppableId,
-                 index: destIndex
-             },
-             source,
-             source: {
-                 droppableId: sourcedroppableId,
-                 index: sourceIndex
-             },
-             draggableId,
-             type,
-        } = result
+        if (result.destination){
+            const {
+                destination,
+                destination: {
+                    droppableId: destdroppableId,
+                    index: destIndex
+                },
+                source,
+                source: {
+                    droppableId: sourcedroppableId,
+                    index: sourceIndex
+                },
+                draggableId,
+                type,
+            } = result
 
-        if(!destination){
-            return;
-        }
+            if(!destination){
+                return;
+            }
 
-        if(type === "list"){
-            const newListsIds = data.listIds;
-            newListsIds.splice(sourceIndex, 1);
-            newListsIds.splice(destIndex, 0, draggableId);
-            return;
-        }
+            if(type === "list"){
+                const newListsIds = data.listIds;
+                newListsIds.splice(sourceIndex, 1);
+                newListsIds.splice(destIndex, 0, draggableId);
+                return;
+            }
 
-        const sourceList = data.lists[sourcedroppableId];
-        const destinationList = data.lists[destdroppableId];
-        const draggingCard = sourceList.cards.filter((card)=>card.id === draggableId)[0];
+            const sourceList = data.lists[sourcedroppableId];
+            const destinationList = data.lists[destdroppableId];
+            const draggingCard = sourceList.cards.filter((card)=>card.id === draggableId)[0];
 
-        if(sourcedroppableId === destdroppableId){
-            // utilizar splice oara intercambiar los indices
-            sourceList.cards.splice(sourceIndex, 1);
-            destinationList.cards.splice(destIndex, 0, draggingCard);
-            // actualizaremos setData con los nuevos
-            setData({
-               ...data,
-               lists: {
-                   ...data.lists,
-                   [sourceList.id] : destinationList
-               }
-            });
+            if(sourcedroppableId === destdroppableId){
+                // utilizar splice oara intercambiar los indices
+                sourceList.cards.splice(sourceIndex, 1);
+                destinationList.cards.splice(destIndex, 0, draggingCard);
+                // actualizaremos setData con los nuevos
+                setData({
+                    ...data,
+                    lists: {
+                        ...data.lists,
+                        [sourceList.id] : destinationList
+                    }
+                });
 
-        }else{
-            sourceList.cards.splice(sourceIndex, 1);
-            destinationList.cards.splice(destIndex, 0 , draggingCard);
-            setData({
-                ...data,
-                lists: {
-                    ...data.lists,
-                    [sourceList.id]: sourceList,
-                    [destinationList.id]: destinationList
-                }
-            });
+            }else{
+                sourceList.cards.splice(sourceIndex, 1);
+                destinationList.cards.splice(destIndex, 0 , draggingCard);
+                setData({
+                    ...data,
+                    lists: {
+                        ...data.lists,
+                        [sourceList.id]: sourceList,
+                        [destinationList.id]: destinationList
+                    }
+                });
+            }
         }
 
     }

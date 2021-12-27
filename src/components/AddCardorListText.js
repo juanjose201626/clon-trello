@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, useRef} from 'react';
 import {Paper, makeStyles, InputBase, Button, IconButton, fade} from '@material-ui/core';
 import ClearIcon from "@material-ui/icons/Clear";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
