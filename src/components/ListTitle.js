@@ -53,7 +53,7 @@ const useStyle = makeStyles(theme => ({
   titleText: {
     flexGrow: 1,
     fontSize: '1.2rem',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   input: {
     fontSize: "1.2rem",

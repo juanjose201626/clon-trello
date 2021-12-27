@@ -18,12 +18,14 @@ const TrelloList = ({list, index}) => {
                       <Paper className={classes.root} {...provided.dragHandleProps}>
                           <CssBaseline />
                           <ListTitle title={list.title} listId={list.id} />
+                        {provided.placeholder}
                           <Droppable droppableId={list.id}>
                               {
                                   (provided) => (
                                       <div
                                           ref={provided.innerRef}
                                           {...provided.droppableProps}
+                                          style={{minHeight: '1px'}}
                                       >
                                           {
                                               list?.cards && list?.cards.map((card, index)=>(

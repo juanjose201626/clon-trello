@@ -27,11 +27,6 @@ export default function App() {
 
     const addCard = (title, listId) => {
 
-        console.table([{
-            listId,
-            title
-        }])
-
         const newCard = {
             id: uuid(),
             title
@@ -39,7 +34,6 @@ export default function App() {
 
         const list = data.lists[listId];
 
-        // console.log("list", list);
         list.cards = [...list.cards, newCard];
         setData({
             ...data,
@@ -58,17 +52,6 @@ export default function App() {
             title: title,
             cards: []
         }
-
-        console.log({
-            listIds: [
-                ...data.listIds,
-                newListId
-            ],
-            lists: {
-                ...data.lists,
-                [newListId]: newList
-            }
-        });
 
         setData({
             listIds: [
@@ -99,22 +82,6 @@ export default function App() {
              type,
         } = result
 
-        console.table([
-            {
-                sourcedroppableId,
-                destdroppableId,
-                draggableId
-            }
-        ]);
-
-        console.table([
-            {
-                type,
-                sourceIndex,
-                destIndex
-            }
-        ]);
-
         if(!destination){
             return;
         }
@@ -129,19 +96,6 @@ export default function App() {
         const sourceList = data.lists[sourcedroppableId];
         const destinationList = data.lists[destdroppableId];
         const draggingCard = sourceList.cards.filter((card)=>card.id === draggableId)[0];
-
-        console.table([
-            {
-                draggingCard,
-                sourceList,
-                destinationList
-            }
-        ]);
-
-
-        console.log("resultadp",sourcedroppableId === destdroppableId);
-        console.log("source drop id", sourcedroppableId);
-        console.log("dest drop id", destdroppableId);
 
         if(sourcedroppableId === destdroppableId){
             // utilizar splice oara intercambiar los indices
@@ -209,7 +163,7 @@ const useStyle = makeStyles(theme => ({
         backgroundPosition: 'center',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
-        width: 'fit-content',
+        overflowX: 'auto'
     },
     container: {
         display: "flex",
