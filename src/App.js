@@ -209,7 +209,7 @@ const useStyle = makeStyles(theme => ({
         backgroundPosition: 'center',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
-        width: '100%',
+        width: 'fit-content',
     },
     container: {
         display: "flex",
