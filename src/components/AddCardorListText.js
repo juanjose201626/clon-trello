@@ -25,7 +25,6 @@ const AddCardorListText = ({type, setOpen, listId}) => {
                 <InputBase
                     multiline
                     value={title}
-                    onBlur={()=> setOpen(false)}
                     onChange={e => setTitle(e.target.value)}
                     placeholder={
                         type === "card" ?
